@@ -44,7 +44,7 @@ func main() {
   upsData := UpsData{}
   scanner := bufio.NewScanner(os.Stdin)
   // r := regexp.MustCompile(`^(\S+)(\s+)?\:\s+(.*)$`)
-  r := regexp.MustCompile(`^(\S+)(\s+)?\:\s+([\d+\.\d+])`)
+  r := regexp.MustCompile(`^(\S+)(\s+)?\:\s+([\d\.]+)`)
   // TODO: scan the data into a more robust go struct
   for scanner.Scan() {
     upsData.lines = append(upsData.lines, scanner.Text())
@@ -58,6 +58,7 @@ func main() {
   for _, line := range upsData.lines {
     // fmt.Println(line)
     res := r.FindStringSubmatch(line)
+    fmt.Printf("%v\n", res)
     if len(res) > 2 {
       // fmt.Printf("%v\n", res)
       // fmt.Printf("%s - %s\n", res[1], res[3])
